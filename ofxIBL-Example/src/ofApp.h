@@ -23,7 +23,7 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 		
-    ofxFilteredCubeMap cubemap;
+    ofxFilteredCubeMap cubemap[3];
     ofxIBL ibl;
     ofxIBLMaterial material;
     
@@ -34,4 +34,7 @@ class ofApp : public ofBaseApp{
     ofParameter<bool> useBaseColorMap;
     ofParameter<bool> useNormalMap;
     ofParameter<float> normalVal;
+    ofParameter<int> environment;
+    
+    ofImage baseColorTex, normalTex;
 };

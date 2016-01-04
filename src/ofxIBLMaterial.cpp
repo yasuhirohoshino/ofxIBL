@@ -13,7 +13,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     }
     if(useBaseColorMap){
         shader -> setUniform1i("useBaseColorMap", 1);
-        shader -> setUniformTexture("baseColorMap", baseColorMap.getTexture(), 2);
+        shader -> setUniformTexture("baseColorMap", baseColorMap -> getTexture(), 2);
     } else {
         shader -> setUniform1i("useBaseColorMap", 0);
     }
@@ -21,7 +21,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // roughnessMap
     if(useRoughnessMap){
         shader -> setUniform1i("useRoughnessMap", 1);
-        shader -> setUniformTexture("roughnessMap", roughnessMap.getTexture(), 3);
+        shader -> setUniformTexture("roughnessMap", roughnessMap -> getTexture(), 3);
     } else {
         shader -> setUniform1i("useRoughnessMap", 0);
         shader -> setUniform1f("roughness", roughness);
@@ -30,7 +30,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // metallicMap
     if(useMetallicMap){
         shader -> setUniform1i("useMetallicMap", 1);
-        shader -> setUniformTexture("metallicMap", metallicMap.getTexture(), 4);
+        shader -> setUniformTexture("metallicMap", metallicMap -> getTexture(), 4);
     } else {
         shader -> setUniform1i("useMetallicMap", 0);
         shader -> setUniform1f("metallic", metallic);
@@ -39,7 +39,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // normalMap
     if(useNormalMap){
         shader -> setUniform1i("useNormalMap", 1);
-        shader -> setUniformTexture ("normalMap", normalMap.getTexture(), 5);
+        shader -> setUniformTexture ("normalMap", normalMap -> getTexture(), 5);
         shader -> setUniform1f ("normalVal", normalVal);
     } else {
         shader -> setUniform1i("useNormalMap", 0);
@@ -48,7 +48,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // occlusionMap
     if(useOcclusionMap){
         shader -> setUniform1i("useOcclusionMap", 1);
-        shader -> setUniformTexture("occlusionMap", occlusionMap.getTexture(), 6);
+        shader -> setUniformTexture("occlusionMap", occlusionMap -> getTexture(), 6);
     } else {
         shader -> setUniform1i("useOcclusionMap", 0);
     }
@@ -56,7 +56,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // emissionMap
     if(useEmissionMap){
         shader -> setUniform1i("useEmissionMap", 1);
-        shader -> setUniformTexture("emissionMap", emissionMap.getTexture(), 7);
+        shader -> setUniformTexture("emissionMap", emissionMap -> getTexture(), 7);
     } else {
         shader -> setUniform1i("useEmissionMap", 0);
     }
@@ -64,7 +64,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // detailBaseColor
     if(useDetailBaseColorMap){
         shader -> setUniform1i("useDetailBaseColorMap", 1);
-        shader -> setUniformTexture("detailBaseColorMap", detailBaseColorMap.getTexture(), 8);
+        shader -> setUniformTexture("detailBaseColorMap", detailBaseColorMap -> getTexture(), 8);
     } else {
         shader -> setUniform1i("useDetailBaseColorMap", 0);
     }
@@ -72,7 +72,7 @@ void ofxIBLMaterial::begin(ofShader * shader){
     // detailNormalMap
     if(useDetailNormalMap){
         shader -> setUniform1i("useDetailNormalMap", 1);
-        shader -> setUniformTexture ("detailNormalMap", detailNormalMap.getTexture(), 9);
+        shader -> setUniformTexture ("detailNormalMap", detailNormalMap -> getTexture(), 9);
     } else {
         shader -> setUniform1i("useDetailNormalMap", 0);
     }
@@ -87,6 +87,7 @@ void ofxIBLMaterial::end(){
     shader -> setUniform1i("useEmissionMap", 0);
     shader -> setUniform1i("useDetailBaseColorMap", 0);
     shader -> setUniform1i("useDetailNormalMap", 0);
+    shader -> setUniform1i("useGlobalColor", 0);
     shader -> setUniform2f("textureRepeatTimes", ofVec2f(1.0, 1.0));
     shader -> setUniform2f("detailTextureRepeatTimes", ofVec2f(1.0, 1.0));
 }

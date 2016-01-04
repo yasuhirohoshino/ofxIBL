@@ -3,13 +3,19 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-    cubemap.load("Barce_Rooftop_C_8k.jpg", 512, true, "filteredMapCache");
+    cubemap[0].load("Barce_Rooftop_C_8k.jpg", 512, true, "filteredMapCache");
+    cubemap[1].load("Arches_E_PineTree_8k.jpg", 512, true, "filteredMapCache");
+    cubemap[2].load("BasketballCourt_8k.jpg", 512, true, "filteredMapCache");
     ofDisableArbTex();
+    
+    baseColorTex.load("tex1.png");
+    normalTex.load("199_norm.JPG");
+    
     material.baseColor = baseColor;
     material.useBaseColorMap = false;
-    material.baseColorMap.load("tex1.png");
+    material.baseColorMap = &baseColorTex;
     material.useNormalMap = false;
-    material.normalMap.load("199_norm.JPG");
+    material.normalMap = &normalTex;
     material.normalVal = normalVal;
     material.textureRepeatTimes = ofVec2f(4.0, 2.0);
 
@@ -17,12 +23,14 @@ void ofApp::setup(){
     useBaseColorMap.set("useBaseColorMap", false);
     useNormalMap.set("useNormalMap", false);
     normalVal.set("normalVal", 1.0, 0.0, 1.0);
+    environment.set("environment", 0, 0, 2);
     
     gui.setup("IBL");
     gui.add(baseColor);
     gui.add(useBaseColorMap);
     gui.add(useNormalMap);
     gui.add(normalVal);
+    gui.add(environment);
     
 }
 
@@ -40,7 +48,7 @@ void ofApp::update(){
 void ofApp::draw(){
     ofEnableDepthTest();
     cam.begin();
-    ibl.begin(&cam, &cubemap);
+    ibl.begin(&cam, &cubemap[environment]);
     ibl.drawEnvironment(4000.0, 0.2);
     for(int i=0;i<10;i++){
         material.roughness = float(i) / 9.0;
