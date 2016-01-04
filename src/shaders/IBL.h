@@ -36,7 +36,6 @@ public:
                                    
                                    out vec3 reflectVec;
                                    out mat3 mView;
-                                   out vec3 viewVec;
                                    out mat4 normalMatrix;
                                    
                                    void main() {
@@ -60,10 +59,6 @@ public:
                                            }
                                            vec3 binormal = normalize(cross(norm, tang));
                                            mView = mat3(tang, binormal, norm);
-                                           viewVec.x = dot(tang, -position.xyz);
-                                           viewVec.y = dot(binormal, -position.xyz);
-                                           viewVec.z = dot(norm, -position.xyz);
-                                           viewVec = normalize(viewVec);
                                        }
                                        
                                        vec3 relfect0 = reflect(normalize(v_positionVarying.xyz), v_normalVarying);
@@ -127,7 +122,6 @@ public:
                                    
                                    in vec3 reflectVec;
                                    in mat3 mView;
-                                   in vec3 viewVec;
                                    in mat4 normalMatrix;
                                    
                                    layout (location = 0) out vec4 fragColor;
