@@ -51,9 +51,9 @@ public:
                                        if(useNormalMap == 1){
                                            vec3 norm = v_normalVarying;
                                            vec3 c1 = normalize(cross(normal, vec3(0.0, 0.0, 1.0)));
-                                           vec3 c2 = normalize(cross(normal, vec3(1.0, 1.0, 0.0)));
+                                           vec3 c2 = normalize(cross(normal, vec3(0.0, 1.0, 0.0)));
                                            vec3 tang = vec3(0.0);
-                                           if(length(c1) >= length(c2)){
+                                           if(length(c1) > length(c2)){
                                                tang = c1;
                                            }else{
                                                tang = c2;
@@ -221,7 +221,7 @@ public:
                                            
                                            vec3 normal = vec3(0.0);
                                            vec3 reflectDir = vec3(0.0);
-                                           vec3 viewDir = vec3(0.0);
+                                           vec3 viewDir = normalize(-v_positionVarying.xyz);
                                            if(useNormalMap == 1){
                                                vec3 normalMapVec = texture(normalMap, mod(texCoordVarying * textureRepeatTimes, 1.0)).rgb;
                                                if(useDetailNormalMap == 1){
@@ -232,11 +232,9 @@ public:
                                                }
                                                vec3 relfect0 = reflect(normalize(v_positionVarying.xyz), normal);
                                                reflectDir = vec3(viewTranspose * vec4(relfect0, 0.0)) * vec3(1, 1, -1);
-                                               viewDir = -viewVec;
                                            } else {
                                                normal = v_normalVarying;
                                                reflectDir = reflectVec;
-                                               viewDir = normalize(-v_positionVarying.xyz);
                                            }
                                            
                                            float occlusion = 1.0;
@@ -245,8 +243,8 @@ public:
                                            }
                                            
                                            vec3 diffuseColor = baseColor - baseColor * metallicVal;
-                                           vec3 specularColor	= mix(vec3(0.01), baseColor, metallicVal);
-                                           vec3 diffuse = textureLod(envMap, normal, 6).rgb * diffuseColor;
+                                           vec3 specularColor = mix(vec3(0.01), baseColor, metallicVal);
+                                           vec3 diffuse = textureLod(envMap, normal, int(numMips * 2 / 3)).rgb * diffuseColor;
                                            vec3 specular = ApproximateSpecularIBL(specularColor, roughnessVal, normal, viewDir, reflectDir);
                                            vec3 fresnel = Fresnel(normal, normalize(-v_positionVarying.xyz), roughnessVal, reflectVec, 0.02) * (1.0 - metallicVal);
                                            
