@@ -553,7 +553,7 @@ void ofxFilteredCubeMap::drawSphere(){
 }
 
 bool ofxFilteredCubeMap::isHDR(){
-    if(textureFormat == GL_RGBA32F){
+    if(textureFormat == GL_RGB32F){
         return true;
     }else{
         return false;
