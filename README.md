@@ -3,8 +3,9 @@
 Image Based Lighting (IBL) addon for openFrameworks.
 
 ![sample image](ofxIBL_thumbnail.jpg)
+![sample image](ofxIBL_thumbnail_2.jpg)
 
-The Environment image in Example is downloaded from <a href="http://www.hdrlabs.com/sibl/archive.html" target="_blank">sIBL Archive</a>.
+Environment images in Example are downloaded from <a href="http://www.hdrlabs.com/sibl/archive.html" target="_blank">sIBL Archive</a>.
 
 By Yasuhiro Hoshino
 
