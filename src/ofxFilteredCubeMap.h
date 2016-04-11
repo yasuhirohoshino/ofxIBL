@@ -1,7 +1,7 @@
 #pragma once
 #include "ofMain.h"
-#include "shaders/importanceSampling.h"
-#include "shaders/swapRB.h"
+//#include "shaders/importanceSampling.h"
+//#include "shaders/swapRB.h"
 
 class ofxFilteredCubeMap{
 private:
@@ -18,8 +18,7 @@ private:
     vector <ofFloatImage> fFilteredImages[6];
     
     ofShader shader;
-    SwapRB swapRBChannel;
-    ImportanceSampling importanceSampling;
+//    ImportanceSampling importanceSampling;
     ofMesh sphereMesh, envSphereMesh;
     unsigned int cubeMapID;
     unsigned int filteredCubeMapID;
@@ -29,19 +28,14 @@ private:
     int cacheWidth, cacheHeight;
     ofFbo cacheFbo;
     
-    ofFbo swapRBFbo;
-    ofShader swapRBShader;
-    
     int textureFormat;
     ofImage iCacheImage;
     ofFloatImage fCacheImage;
     
     ofMesh skyboxFaces[6];
     
-    bool isOF090;
     int maxMipLevel;
     
-    void swapRB();
     void makeCubeMapTextures();
     void makeCubeMap();
     void makeFilteredCubeMap();

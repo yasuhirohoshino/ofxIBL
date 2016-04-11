@@ -2,7 +2,7 @@
 #include "ofMain.h"
 #include "ofxIBLMaterial.h"
 #include "ofxFilteredCubeMap.h"
-#include "IBL.h"
+//#include "ofxIBL.h"
 
 class ofxIBL{
 public:
@@ -21,5 +21,5 @@ private:
     ofShader IBLShader;
     ofMesh sphereMesh;
     ofxFilteredCubeMap * cubeMap;
-    IBL iblShaderStrings;
+//    IBL iblShaderStrings;
 };

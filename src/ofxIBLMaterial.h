@@ -2,6 +2,8 @@
 #include "ofMain.h"
 
 struct ofxIBLMaterial{
+    
+    
     bool useBaseColorMap = false;
     bool useRoughnessMap = false;
     bool useMetallicMap = false;
@@ -11,6 +13,19 @@ struct ofxIBLMaterial{
     bool useDetailBaseColorMap = false;
     bool useDetailNormalMap = false;
     bool useGlobalColor = false;
+    
+    GLuint baseColorMapIndex;
+    GLuint roughnessMapIndex;
+    GLuint metallicMapIndex;
+    GLuint normalMapIndex;
+    GLuint occlusionMapIndex;
+    GLuint emissionMapIndex;
+    GLuint detailBaseColorMapIndex;
+    GLuint DetailNormalMapIndex;
+    GLuint GlobalColorIndex;
+    
+    GLuint subroutineIndexArray[9];
+    
     ofImage *baseColorMap;
     ofImage *roughnessMap;
     ofImage *metallicMap;

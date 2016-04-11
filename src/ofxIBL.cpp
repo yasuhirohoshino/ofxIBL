@@ -1,10 +1,7 @@
 #include "ofxIBL.h"
 
 ofxIBL::ofxIBL(){
-    IBLShader.setupShaderFromSource(GL_VERTEX_SHADER, iblShaderStrings.gl3VertShader);
-    IBLShader.setupShaderFromSource(GL_FRAGMENT_SHADER, iblShaderStrings.gl3FragShader);
-    IBLShader.bindDefaults();
-    IBLShader.linkProgram();
+    IBLShader.load("shaders/ibl");
     
     sphereMesh = ofSpherePrimitive(1, 100).getMesh();
     for(int i=0;i<sphereMesh.getNormals().size();i++){
